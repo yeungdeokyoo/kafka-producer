@@ -10,11 +10,11 @@ export class AppController {
     transport: Transport.KAFKA,
     options: {
       client: {
-        clientId: 'kafkaSample',
+        clientId: 'haea-kafka',
         brokers: ['localhost:9092'],
       },
       consumer: {
-        groupId: 'my-kafka-consumer' // Should be the same thing we give in consumer
+        groupId: 'grp-haea-kafka-consumer' // Should be the same thing we give in consumer
       }
     }
   })
@@ -23,12 +23,12 @@ export class AppController {
   async onModuleInit() {
     // Need to subscribe to topic 
     // so that we can get the response from kafka microservice
-    this.client.subscribeToResponseOf('my-first-topic');
+    this.client.subscribeToResponseOf('ecu-ota-vin-scheduling-topic');
     await this.client.connect();
   }
 
   @Get()
   getHello() {
-    return this.client.send('my-first-topic', 'Hello Kafka'); // args - topic, message
+    return this.client.send('ecu-ota-vin-scheduling-topic', 'VIN:KMTG74LE5KU008391;DATE:20210825 183545'); // args - topic, message
   }
 }
