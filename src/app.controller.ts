@@ -31,4 +31,4 @@ export class AppController {
   getHello() {
     return this.client.send('ecu-ota-vin-scheduling-topic', 'VIN:KMTG74LE5KU008391;DATE:20210825 183545'); // args - topic, message
   }
-}
+} 
